@@ -1,24 +1,59 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+// data
+    // - choice of words
+    // - secret word
+    // - guessed letters
+    // - player guess
+    // - tries left
+    // - show message (win/lose state) 
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+// * logic
+// * render
 
-setupCounter(document.querySelector('#counter'))
+// * pseudocode
+//     - secret word to be randomly selected from choice of words 
+//     - player to use keyboard to guess secret word
+//     - catch every keypress event
+//         1) for every wrong guess, minus 1 from 'tries left' 
+//         2) for every corret guess, make letter(s) appear on screen
+//     - game state
+//         1) lose if out of tries left without guessing word
+//         2) win if managed to guess word without finishing tries
+
+//!!!!!  CODE !!!!!!!!!!!!!
+// MODEL    
+/*----- constants -----*/
+
+/*----- state variables -----*/
+const game = {
+  screen: "startScreen",
+  words: ["Liechtenstein", "Singapore", "Argentina", "Switzerland", "Malaysia"],
+  usedLetters: [],
+  triesLeft: 6,
+  secretWord: () => game.words[Math.floor(Math.random()*game.words.length)],
+
+}
+/*----- cached elements  -----*/
+const startScreen = document.querySelector("#startScreen");
+const gameScreen = document.querySelector("#gameScreen");
+
+const startButton = document.querySelector("#startButton");
+
+let tries = document.querySelector('#tries');
+/*----- event listeners -----*/
+startButton.addEventListener("click", handleStart);
+
+/*----- functions -----*/
+//!!!!!!!!!!!!!!! VIEW (render) !!!!!!!!!!!!!!!!!!!!!!!
+function renderScreen() {
+  startScreen.classList.add("hide");
+  gameScreen.classList.add("hide");
+  
+  document.querySelector(`#${game.screen}`).classList.remove("hide");
+}
+
+//!!!!!!!!!!!!!!!!! CONTROLLER (logic) !!!!!!!!!!!!!!!!!!!
+
+function handleStart() {
+  game.screen = "gameScreen";
+  renderScreen();
+}
