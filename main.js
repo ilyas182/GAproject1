@@ -36,12 +36,14 @@ const game = {
 const startScreen = document.querySelector("#startScreen");
 const gameScreen = document.querySelector("#gameScreen");
 const gameOverScreen = document.querySelector('#gameOverScreen');
+const winScreen = document.querySelector('#winScreen');
 
 const startButton = document.querySelector("#startButton");
 
 let tries = document.querySelector('#tries');
 let secretWord;
 let letter;
+
 /*----- event listeners -----*/
 startButton.addEventListener("click", handleStart);
 
@@ -51,6 +53,7 @@ function renderScreen() {
   startScreen.classList.add("hide");
   gameScreen.classList.add("hide");
   gameOverScreen.classList.add("hide");
+  winScreen.classList.add('hide');
   
   document.querySelector(`#${game.screen}`).classList.remove("hide");
 }
@@ -81,7 +84,6 @@ function createWord() {
     gameScreen.appendChild(letter);
     letter.classList.add("horizontal");
     letter.classList.add("hide-text");
-    // letter.setAttribute('id', letter.innerText);
     letter.classList.add(letter.innerText.toLowerCase());
   }  
 }
@@ -92,20 +94,41 @@ function keypressEvent() {
       console.log(event.key);
         if (secretWord.toLowerCase().includes(event.key))
         {
-          Array.from(document.getElementsByClassName(event.key)).forEach((element) => element.classList.remove('hide-text'));            
+          Array.from(document.getElementsByClassName(event.key)).forEach((element) => element.classList.remove('hide-text'));
+          checkIfWordGuessed();
         }
         else
         {
         game.triesLeft--;
         renderTry();
-        gameState();
+        gameOver();
         }
       })
 }
 
-function gameState(){
+function gameOver(){
   if (game.triesLeft === 0) {
     game.screen = "gameOverScreen";
     renderScreen();
   }
+}
+
+function checkIfWordGuessed() {
+  let wordArray = [];
+  Array.from(document.getElementsByClassName('horizontal')).forEach((elem) => {
+    if (elem.classList.contains('hide-text'))
+     wordArray.push(1);
+     console.log(wordArray);
+  });
+  winGame(wordArray);
+}
+
+function winGame(array){
+  if (array.length === 0) 
+  {
+    console.log('win');
+    game.screen = "winScreen";
+    renderScreen();
+  }
+     
 }
