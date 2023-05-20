@@ -35,6 +35,7 @@ const game = {
 /*----- cached elements  -----*/
 const startScreen = document.querySelector("#startScreen");
 const gameScreen = document.querySelector("#gameScreen");
+const gameOverScreen = document.querySelector('#gameOverScreen');
 
 const startButton = document.querySelector("#startButton");
 
@@ -49,6 +50,7 @@ startButton.addEventListener("click", handleStart);
 function renderScreen() {
   startScreen.classList.add("hide");
   gameScreen.classList.add("hide");
+  gameOverScreen.classList.add("hide");
   
   document.querySelector(`#${game.screen}`).classList.remove("hide");
 }
@@ -79,8 +81,8 @@ function createWord() {
     gameScreen.appendChild(letter);
     letter.classList.add("horizontal");
     letter.classList.add("hide-text");
-    letter.setAttribute('id', i);
-    
+    // letter.setAttribute('id', letter.innerText);
+    letter.classList.add(letter.innerText.toLowerCase());
   }  
 }
 
@@ -88,17 +90,22 @@ function keypressEvent() {
   document.addEventListener('keypress', function(event) {
     
       console.log(event.key);
-      for (let i = 0; i < secretWord.length; i++){
-        if (event.key == secretWord.charAt(i).toLowerCase())
+        if (secretWord.toLowerCase().includes(event.key))
         {
-          document.getElementById(`${i}`).classList.remove('hide-text');            
+          Array.from(document.getElementsByClassName(event.key)).forEach((element) => element.classList.remove('hide-text'));            
         }
         else
         {
         game.triesLeft--;
-        console.log(game.triesLeft);
-        renderTry;
+        renderTry();
+        gameState();
         }
-      }
       })
+}
+
+function gameState(){
+  if (game.triesLeft === 0) {
+    game.screen = "gameOverScreen";
+    renderScreen();
+  }
 }
