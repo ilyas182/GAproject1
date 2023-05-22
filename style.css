@@ -70,3 +70,14 @@
 .button-24:active {
   opacity: .5;
 }
+
+.bombLine {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  padding: 2.5px;
+  background-color: black;
+  margin: 1px;
+  right: 220px;
+  bottom: 50px;
+}
