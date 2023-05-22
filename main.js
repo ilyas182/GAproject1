@@ -33,8 +33,7 @@ const game = {
   usedLetters: [],
   triesLeft: 6,
   secretWord: (level) => {
-    // let word = game[level];
-    // console.log(word);
+    console.log(game[level])
     return game[level][Math.floor(Math.random() * game[level].length)]
   },
 
@@ -82,19 +81,12 @@ function renderTry() {
 
 function handleStart() {
   game.screen = "difficultyScreen";
-  // secretWord = game.secretWord(); 
-  // console.log(secretWord);
   renderScreen();
-  // renderTry();
-  // createWord();
-  // keypressEvent();
 }
 
 function handleDifficulty(event){
   let difficulty = event.target.innerText;
   game.screen = "gameScreen";
-  // game.words = `${game.difficulty}`;
-  // console.log(game.words);
   secretWord = game.secretWord(difficulty);
   console.log(secretWord);
   renderScreen();
@@ -157,12 +149,5 @@ function winGame(array){
     console.log('win');
     game.screen = "winScreen";
     renderScreen();
-  }
-     
+  }    
 }
-
-// function secretWord(level) {
-//   let words = `${game.level};
-//   console.log(words);
-//   return words[Math.floor(Math.random() * words.length)]
-// }

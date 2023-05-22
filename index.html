@@ -6,28 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rub out the fuse</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
   </head>
   <body>
     <script type="module" src="main.js"></script>
     <div id="startScreen">
-      <h1>Rub out the fuse</h1>
-      <button id="startButton" type="button">Start</button>
+      <h1 class="heading">Rub out the fuse</h1>
+      <button class="buttonOrange" id="startButton" type="button">Start</button>
     </div>
 
     <div id="difficultyScreen" class="hide">
-      <h1>Choose your difficulty</h1>
-      <button id="easyButton" type="button">Easy</button>
-      <button id="mediumButton" type="button">Medium</button>
-      <button id="hardButton" type="button">Hard</button>
+      <h1 class="heading">Choose your difficulty (country edition)</h1>
+      <button class="buttonOrange" id="easyButton" type="button">Easy</button>
+      <button class="buttonOrange" id="mediumButton" type="button">Medium</button>
+      <button class="buttonOrange" id="hardButton" type="button">Hard</button>
     </div>
 
     <div id="gameScreen" class="hide">
-      <h1>Guess the word without letting the bomb explode</h1>
-      <h2 id="tries"></h2>
+      <h1 class="heading">Guess the word without letting the bomb explode</h1>
+      <img id="bombPic" src="https://cdn.pixabay.com/photo/2013/07/12/19/16/bomb-154456_960_720.png" width="100px">
+      <h2 class="heading" id="tries"></h2>
     </div>
 
     <div id="gameOverScreen" class="hide">
-      <h1>Game Over!</h1>
+      <h1 class="heading">Game Over!</h1>
+      <!-- <img src="https://cdn.pixabay.com/photo/2014/08/14/11/14/explosion-417894_960_720.png"> -->
+      <img src="https://media4.giphy.com/media/mEmmzTgOBOsAsQnCdU/giphy.gif?cid=ecf05e47ymnqvu32vxfenoexlc63iwssvb9fjdf03irc1xfw&ep=v1_gifs_related&rid=giphy.gif&ct=g">
     </div>
 
     <div id="winScreen" class="hide">
