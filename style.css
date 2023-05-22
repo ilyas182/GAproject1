@@ -81,3 +81,15 @@
   right: 220px;
   bottom: 50px;
 }
+
+#returnButton {
+  position: relative;
+  bottom: 570px;
+  left: 300px;
+}
+
+#finalPic {
+  position: relative;
+  top: 50px;
+  right: 100px;
+}
