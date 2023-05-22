@@ -26,6 +26,7 @@
 /*----- state variables -----*/
 const game = {
   screen: "startScreen",
+  category: "",
   words: ["Liechtenstein", "Singapore", "Argentina", "Switzerland", "Malaysia"],
   usedLetters: [],
   triesLeft: 6,
@@ -37,8 +38,12 @@ const startScreen = document.querySelector("#startScreen");
 const gameScreen = document.querySelector("#gameScreen");
 const gameOverScreen = document.querySelector('#gameOverScreen');
 const winScreen = document.querySelector('#winScreen');
+const difficultyScreen = document.querySelector('#difficultyScreen');
 
 const startButton = document.querySelector("#startButton");
+const easyButton = document.querySelector('#easyButton');
+const mediumButton = document.querySelector('#mediumButton');
+const hardButton = document.querySelector('#hardButton');
 
 let tries = document.querySelector('#tries');
 let secretWord;
