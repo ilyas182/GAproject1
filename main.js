@@ -26,11 +26,17 @@
 /*----- state variables -----*/
 const game = {
   screen: "startScreen",
-  category: "",
-  words: ["Liechtenstein", "Singapore", "Argentina", "Switzerland", "Malaysia"],
+  // words: ["Liechtenstein", "Singapore", "Argentina", "Switzerland", "Malaysia"],
+  Easy: ["China", "India", "Spain", "Qatar", "Italy", "Japan", "Brazil", "Canada"],
+  Medium: ["Singapore", "Malaysia", "Thailand", "Germany", "New Zealand", "Australia", "Phillipines"],
+  Hard: ["Liechtenstein", "Switzerland", "Luxemborg", "Turkmenistan", "Venezuela", "Zimbabwe"],
   usedLetters: [],
   triesLeft: 6,
-  secretWord: () => game.words[Math.floor(Math.random()*game.words.length)],
+  secretWord: (level) => {
+    // let word = game[level];
+    // console.log(word);
+    return game[level][Math.floor(Math.random() * game[level].length)]
+  },
 
 }
 /*----- cached elements  -----*/
@@ -51,11 +57,15 @@ let letter;
 
 /*----- event listeners -----*/
 startButton.addEventListener("click", handleStart);
+easyButton.addEventListener("click", (event) => handleDifficulty(event));
+mediumButton.addEventListener("click", (event) => handleDifficulty(event));
+hardButton.addEventListener("click", (event) => handleDifficulty(event));
 
 /*----- functions -----*/
 //!!!!!!!!!!!!!!! VIEW (render) !!!!!!!!!!!!!!!!!!!!!!!
 function renderScreen() {
   startScreen.classList.add("hide");
+  difficultyScreen.classList.add("hide");
   gameScreen.classList.add("hide");
   gameOverScreen.classList.add("hide");
   winScreen.classList.add('hide');
@@ -71,8 +81,21 @@ function renderTry() {
 //!!!!!!!!!!!!!!!!! CONTROLLER (logic) !!!!!!!!!!!!!!!!!!!
 
 function handleStart() {
+  game.screen = "difficultyScreen";
+  // secretWord = game.secretWord(); 
+  // console.log(secretWord);
+  renderScreen();
+  // renderTry();
+  // createWord();
+  // keypressEvent();
+}
+
+function handleDifficulty(event){
+  let difficulty = event.target.innerText;
   game.screen = "gameScreen";
-  secretWord = game.secretWord(); 
+  // game.words = `${game.difficulty}`;
+  // console.log(game.words);
+  secretWord = game.secretWord(difficulty);
   console.log(secretWord);
   renderScreen();
   renderTry();
@@ -137,3 +160,9 @@ function winGame(array){
   }
      
 }
+
+// function secretWord(level) {
+//   let words = `${game.level};
+//   console.log(words);
+//   return words[Math.floor(Math.random() * words.length)]
+// }
