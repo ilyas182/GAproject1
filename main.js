@@ -75,6 +75,7 @@ function renderScreen() {
 }
 function renderTry() {
   document.querySelector('#tries').innerText = "Tries left:" + game.triesLeft;
+  
 }
 
 
@@ -127,6 +128,7 @@ function removeKeypressEvent() {
     }
     else
     {
+    document.getElementById(game.triesLeft).style.backgroundColor = 'gray'; 
     game.triesLeft--;
     renderTry();
     gameOver();
