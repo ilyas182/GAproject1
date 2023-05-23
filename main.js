@@ -49,6 +49,7 @@ const startButton = document.querySelector("#startButton");
 const easyButton = document.querySelector('#easyButton');
 const mediumButton = document.querySelector('#mediumButton');
 const hardButton = document.querySelector('#hardButton');
+const returnButton = document.querySelector('#returnButton');
 
 let tries = document.querySelector('#tries');
 let secretWord;
@@ -59,6 +60,7 @@ startButton.addEventListener("click", handleStart);
 easyButton.addEventListener("click", (event) => handleDifficulty(event));
 mediumButton.addEventListener("click", (event) => handleDifficulty(event));
 hardButton.addEventListener("click", (event) => handleDifficulty(event));
+returnButton.addEventListener("click", handleReturn);
 
 /*----- functions -----*/
 //!!!!!!!!!!!!!!! VIEW (render) !!!!!!!!!!!!!!!!!!!!!!!
@@ -150,4 +152,20 @@ function winGame(array){
     game.screen = "winScreen";
     renderScreen();
   }    
+}
+
+function handleReturn() {
+  game.screen = "startScreen";
+  restartGame();
+}
+
+function restartGame(){
+  let elements = document.querySelectorAll('.horizontal');
+  console.log(elements);
+  elements.forEach(element =>  {
+    element.remove();
+  });
+  game.triesLeft = 6;
+  renderTry();
+  renderScreen();
 }

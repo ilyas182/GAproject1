@@ -22,7 +22,7 @@
 #tries {
  position: relative;
  left: 300px; 
- bottom: 50px;
+ bottom: 0px;
 }
 
 #bombPic {
@@ -93,4 +93,6 @@
   position: relative;
   top: 50px;
   right: 100px;
+  mix-blend-mode: multiply;
+
 }
