@@ -156,7 +156,7 @@ function winGame(array){
   {
     console.log('win');
     game.screen = "winScreen";
-    renderScreen();
+    setTimeout(renderScreen, 3000);
   }    
 }
 
