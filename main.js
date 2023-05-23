@@ -94,7 +94,7 @@ function handleDifficulty(event){
   renderScreen();
   renderTry();
   createWord();
-  keypressEvent();
+  addkeypressEvent();
 }
 
 function createWord() {
@@ -110,23 +110,29 @@ function createWord() {
   }  
 }
 
-function keypressEvent() {
-  document.addEventListener('keypress', function(event) {
-    
-      console.log(event.key);
-        if (secretWord.toLowerCase().includes(event.key))
-        {
-          Array.from(document.getElementsByClassName(event.key)).forEach((element) => element.classList.remove('hide-text'));
-          checkIfWordGuessed();
-        }
-        else
-        {
-        game.triesLeft--;
-        renderTry();
-        gameOver();
-        }
-      })
-}
+function addkeypressEvent() {
+  document.addEventListener('keypress', keypress);
+    }
+
+function removeKeypressEvent() {
+  document.removeEventListener('keypress', keypress);
+    }
+
+  function keypress(event){
+    console.log(event.key);
+    if (secretWord.toLowerCase().includes(event.key))
+    {
+      Array.from(document.getElementsByClassName(event.key)).forEach((element) => element.classList.remove('hide-text'));
+      checkIfWordGuessed();
+    }
+    else
+    {
+    game.triesLeft--;
+    renderTry();
+    gameOver();
+    }
+  }  
+
 
 function gameOver(){
   if (game.triesLeft === 0) {
@@ -166,7 +172,9 @@ function restartGame(){
     element.remove();
   });
   game.triesLeft = 6;
-  // document.removeEventListener('keypress', )
+  removeKeypressEvent();
   renderTry();
   renderScreen();
 }
+
+ 
