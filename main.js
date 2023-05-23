@@ -166,6 +166,7 @@ function restartGame(){
     element.remove();
   });
   game.triesLeft = 6;
+  // document.removeEventListener('keypress', )
   renderTry();
   renderScreen();
 }
