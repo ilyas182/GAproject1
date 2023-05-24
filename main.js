@@ -28,7 +28,7 @@ const game = {
   screen: "startScreen",
   // words: ["Liechtenstein", "Singapore", "Argentina", "Switzerland", "Malaysia"],
   Easy: ["China", "India", "Spain", "Qatar", "Italy", "Japan", "Brazil", "Canada"],
-  Medium: ["Singapore", "Malaysia", "Thailand", "Germany", "New Zealand", "Australia", "Phillipines"],
+  Medium: ["Singapore", "Malaysia", "Thailand", "Germany", "Australia", "Phillipines"],
   Hard: ["Liechtenstein", "Switzerland", "Luxemborg", "Turkmenistan", "Venezuela", "Zimbabwe"],
   usedLetters: [],
   triesLeft: 6,
@@ -76,6 +76,11 @@ function renderScreen() {
 function renderTry() {
   document.querySelector('#tries').innerText = "Tries left:" + game.triesLeft;
   
+}
+
+function renderBombline(){
+  let elements = document.querySelectorAll('.bombLine');
+  elements.forEach(elem => elem.style.backgroundColor = 'black')
 }
 
 
@@ -158,7 +163,7 @@ function winGame(array){
   {
     console.log('win');
     game.screen = "winScreen";
-    setTimeout(renderScreen, 3000);
+    setTimeout(renderScreen, 2000);
   }    
 }
 
@@ -174,6 +179,7 @@ function restartGame(){
     element.remove();
   });
   game.triesLeft = 6;
+  renderBombline();
   removeKeypressEvent();
   renderTry();
   renderScreen();
