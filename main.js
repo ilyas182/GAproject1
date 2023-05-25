@@ -134,7 +134,8 @@ function removeKeypressEvent() {
     else
     {
     document.getElementById(game.triesLeft).style.backgroundColor = 'gray'; 
-    game.triesLeft--;
+    storeUsedLetters(event.key);
+    
     renderTry();
     gameOver();
     }
@@ -185,4 +186,14 @@ function restartGame(){
   renderScreen();
 }
 
- 
+function storeUsedLetters(letter){
+  if (game.usedLetters.includes(letter) !== true){
+    game.usedLetters.push(letter);
+    console.log(game.usedLetters);
+    game.triesLeft--;
+  }
+  else
+  {
+    alert(`${letter} already used`);
+  }
+}
